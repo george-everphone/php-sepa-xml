@@ -205,7 +205,7 @@ class GroupHeader
         return $this->creationDateTimeFormat;
     }
 
-    public function getGrouping(): string
+    public function getGrouping(): ?string
     {
         return $this->grouping;
     }

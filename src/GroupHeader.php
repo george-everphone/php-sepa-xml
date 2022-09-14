@@ -207,6 +207,6 @@ class GroupHeader
 
     public function getGrouping(): string
     {
-        return $this->getGrouping();
+        return $this->grouping;
     }
 }

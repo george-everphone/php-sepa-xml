@@ -103,6 +103,11 @@ abstract class BaseDomBuilder implements DomBuilderInterface
     public function visitGroupHeader(GroupHeader $groupHeader): void
     {
         $groupHeaderTag = $this->doc->createElement('GrpHdr');
+        if($groupHeader->getGrouping() != null){
+            $grouping = $this->createElement('Grpg', $groupHeader->getGrouping());
+            $groupHeaderTag->appendChild($grouping);
+        }
+
         $messageId = $this->createElement('MsgId', $groupHeader->getMessageIdentification());
         $groupHeaderTag->appendChild($messageId);
         $creationDateTime = $this->createElement(

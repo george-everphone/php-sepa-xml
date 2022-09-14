@@ -96,12 +96,13 @@ class GroupHeader
      *                                      The first 8 or 11 characters of <Msgld> must match the BIC of the
      *                                      Instructing Agent. The rest of the field can be freely defined.
      */
-    public function __construct(string $messageIdentification, string $initiatingPartyName, bool $isTest = false)
+    public function __construct(string $messageIdentification, string $initiatingPartyName, bool $isTest = false, string $grouping = null)
     {
         $this->messageIdentification = $messageIdentification;
         $this->isTest = $isTest;
         $this->initiatingPartyName = StringHelper::sanitizeString($initiatingPartyName);
         $this->creationDateTime = new \DateTime();
+        $this->grouping = $grouping;
     }
 
     public function accept(DomBuilderInterface $domBuilder): void

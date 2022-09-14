@@ -85,10 +85,12 @@ class CustomerCreditTransferDomBuilder extends BaseDomBuilder
         $this->currentPayment->appendChild($paymentTypeInformation);
 
         if ($paymentInformation->getLocalInstrumentCode()) {
-            $localInstrument = $this->createElement('LclInstr');
+            $localInstrument = $this->createElement('LclInstrm');
             $localInstrument->appendChild($this->createElement('Cd', $paymentInformation->getLocalInstrumentCode()));
             $this->currentPayment->appendChild($localInstrument);
         }
+        $paymentTypeInformation->appendChild($localInstrument);
+
 
         $this->currentPayment->appendChild($this->createElement('ReqdExctnDt', $paymentInformation->getDueDate()));
         $debtor = $this->createElement('Dbtr');

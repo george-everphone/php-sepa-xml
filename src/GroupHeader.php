@@ -86,17 +86,23 @@ class GroupHeader
     protected $creationDateTimeFormat = 'Y-m-d\TH:i:s\Z';
 
     /**
+     * @var string
+     */
+    protected $grouping;
+
+    /**
      * @param string $messageIdentification Maximum length: 35. Reference Number of the bulk.
      *                                      Part of the duplication check (unique daily reference).
      *                                      The first 8 or 11 characters of <Msgld> must match the BIC of the
      *                                      Instructing Agent. The rest of the field can be freely defined.
      */
-    public function __construct(string $messageIdentification, string $initiatingPartyName, bool $isTest = false)
+    public function __construct(string $messageIdentification, string $initiatingPartyName, bool $isTest = false, string $grouping = null)
     {
         $this->messageIdentification = $messageIdentification;
         $this->isTest = $isTest;
         $this->initiatingPartyName = StringHelper::sanitizeString($initiatingPartyName);
         $this->creationDateTime = new \DateTime();
+        $this->grouping = $grouping;
     }
 
     public function accept(DomBuilderInterface $domBuilder): void
@@ -197,5 +203,10 @@ class GroupHeader
     public function getCreationDateTimeFormat(): string
     {
         return $this->creationDateTimeFormat;
+    }
+
+    public function getGrouping(): string
+    {
+        return $this->getGrouping();
     }
 }

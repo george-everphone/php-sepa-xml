@@ -38,7 +38,7 @@ class TransferFileFacadeFactory
      *                                            The first 8 or 11 characters of <Msgld> must match the BIC of the
      *                                            Instructing Agent. The rest of the field can be freely defined.
      */
-    public static function createDirectDebit(string $uniqueMessageIdentification, string $initiatingPartyName, string $painFormat = 'pain.008.002.02', string $grouping): CustomerDirectDebitFacade
+    public static function createDirectDebit(string $uniqueMessageIdentification, string $initiatingPartyName, string $painFormat = 'pain.008.002.02', ?string $grouping): CustomerDirectDebitFacade
     {
         $groupHeader = new GroupHeader($uniqueMessageIdentification, $initiatingPartyName, false, $grouping);
 
@@ -50,7 +50,7 @@ class TransferFileFacadeFactory
         return new CustomerDirectDebitFacade(new CustomerDirectDebitTransferFile($groupHeader), new CustomerDirectDebitTransferDomBuilder($painFormat));
     }
 
-    public static function createCustomerCredit(string $uniqueMessageIdentification, string $initiatingPartyName, string $painFormat = 'pain.001.002.03', string $grouping): CustomerCreditFacade
+    public static function createCustomerCredit(string $uniqueMessageIdentification, string $initiatingPartyName, string $painFormat = 'pain.001.002.03', ?string $grouping): CustomerCreditFacade
     {
         $groupHeader = new GroupHeader($uniqueMessageIdentification, $initiatingPartyName, false, $grouping);
 
